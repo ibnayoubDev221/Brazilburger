@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+{% block menu %}{% endblock %}
+
+{% block body %}
+<div class="inscription">
+    <div class="register container w-50 ">
+        <div class="card-inscription">
+        <div class="register-inscription">
+    <h1>Inscription</h1>
+        </div>    
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.prenom) }}
+        {{ form_row(registrationForm.nom) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+         {{ form_row(registrationForm.telephone) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn-inscription btn-dark mb-2">Inscription</button>
+    {{ form_end(registrationForm) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+    {% block footer %}
+  
+        {% endblock %}

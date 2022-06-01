@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="mt-5 container">
+
+
+<h2 class=" votre-panier text-center"> VOTRE PANIER</h2>
+{% if datas | length > 0 %}
+ <table >
+   <tr class="tr-panier">
+    <td><p class="p-burg">Burger</p></td>
+    <td><p class="p-burg">Prix</p></td>
+    <td><p class="p-burg">Quantité</p></td>
+    <td><p class="p-burg">Total</p></td>
+    <td><p class="p-burg">Action</p></td>
+   </tr>
+   {% for data in datas %}
+   <tr class="td-panier">
+    <td>{{ data.burger.nom }}</td>
+    <td>{{ data.burger.prix }}</td>
+    <td>{{ data.quantity }}</td>
+    <td>{{ data.burger.prix * data.quantity}}</td>
+    <td> <a href="{{ path('app_remove_panier',{'id':data.burger.id ~ data.burger.type}) }}" class="btn-remove btn-danger"><i class="fa fa-trash"></i></a> </td>
+   </tr>
+   {% endfor %}
+   <tr>
+    <td class="total-burger" colspan="3">Total:</td>
+    <td class="total-burger">{{ total }}</td>
+    <td class="total-burger"></td>
+   </tr>
+</table>
+
+<div class="com-panier">
+<form action="{{ path('app_panier') }}" method="POST">
+
+  <button type ="submit" class="button-commander">Commander</button>
+{% else %}
+
+<p style ="text-align:center;font-size:3rem;margin:2%;color:red;">le panier est vide</p>
+{% endif %}
+</form>
+
+</div>
+</div>
+
+
+{% endblock %}
+{% block footer %}
+{% endblock %}

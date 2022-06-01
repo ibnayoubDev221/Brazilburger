@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+
+
+{% endblock %}
+
+{% block body %}
+
+
+<div class="full-png">
+<img src="/background/full.png" class="bgde img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+</div>
+
+ 
+  <div id="popup" class="popup">
+<span id="btnClose" class=" btnClose"><a href="{{ path('app_catalogue') }}">&times;</a></span><br/>
+ <div class="container mt-2">
+        <div class="row">
+         <div id="menu-detail">
+    {% for burgers in burger %}
+    {% for image in burgers.images %}
+     <div class="col-4 mb-4"> 
+        <div class="detail-menu-img" style="width: 18rem">          
+            <img style="height:250px;width:250px;" src="{{ asset('/image/'~ image.nom)}}" class="card-img-top w-100" alt="">
+          <div class="card-body text-center">
+          </div>
+     </div>
+  </div>
+    {% endfor %}
+      <div class="ml-5"id="description">
+      <span class="burger-nom"> {{burgers.nom}}</span><br/><br/>
+    <h1> <p >{{ burgers.description }}<p></h1>
+        </div>
+    {% endfor %}
+    </div>
+ </div>
+     </div>
+     </div>
+</div> 
+{% endblock %}

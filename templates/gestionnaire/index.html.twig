@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GestionnaireController!{% endblock %}
+
+  {% block menu %}
+       
+        
+{#              <ul> 
+             
+              {% if not app.user %}
+                  <a class="li" href="/login"><i class="fa fa-user">Login</i></a>
+                  <a id="a1"class="li" href="/register">S'inscrire</a>
+                {% else %}
+                  <a class="text-light float-left" href="{{ path('app_burger') }}"> Burgers</a>
+                  <a class="ml-4 text-light float-left" href="{{ path('app_menu') }}">Menus</a>
+                  <a class="ml-4 text-light float-left" href="">Gérer les Commabes</a>
+                  <a class="ml-4 text-light ml-2"href="{{ path('app_logout')}}">Deconnexion</a>
+                  
+              {% endif %}
+             </li>
+          </ul>
+        </div> #}
+        {% endblock %}
+
+
+{% block body %}
+
+<div class="">
+
+</div>
+
+{% endblock %}
+ {% block footer %}{% endblock %}

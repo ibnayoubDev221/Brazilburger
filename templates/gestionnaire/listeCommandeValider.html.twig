@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BurgerController!{% endblock %}
+
+ {% block menu %}
+
+         <div class="nav-menu">
+            <div class="image-logo">
+              <img src="/background/burgerking.png" style="height:50px;" alt="">
+            </div>
+             <nav>
+                <ul>
+                  {% if not app.user %}
+                    <li><a href="/login"><i class="fa fa-car"></i>Login</a></li>
+                    <li><a href="/register">S'inscrire</a></li>
+                  {% else %}  
+                    <li><a class="" href="{{ path('app_burger') }}">Burgers</a></li>
+                    <li><a class="" href="{{ path('app_menu')}}">Menus</a></li>
+                    <li> <a class="" href="{{ path('app_complement') }}">Complements</a></li>
+                    <li><a class="" href="{{ path('app_commande') }}">Gérer les Commandes</a></li>
+                    <li><a href="{{ path('app_logout') }}">Deconnexion</a></li>
+                  {% endif %}
+                </ul>
+             </nav>
+        </div>
+        {% endblock %}
+   {% block body %}
+
+ <div class=" table-commande-titre">
+  <div class="liste-burger-titre">
+  <h1 class="mt-4  text-light border list-burger text-center">Liste Commandes</h1>
+     </div>
+        <table class="table-burg  bg-light  border ">
+                <tr class="tr-burger" >
+                   <td scope="col">#</td>
+                   <td scope="col">Numéro</td>                 
+                   <td scope="col">Date</td>       
+                   <td scope="col">Etat</td>   
+                   <td scope="col">Email</td>   
+                    
+                </tr>
+                {% for commande in commandes %}
+                 <tr>
+                
+               <td class="td-burger" scope="col"><p>#</td>
+               <td class="td-burger" scope="col"><p> {{commande.id}}</p></td>
+               <td class="td-burger"scope="col"><p>{{commande.date}}</p></td>
+               <td class="td-burger"scope="col"><p>{{commande.etat}}</p></td>
+               <td class="td-burger"scope="col"><p>{{commande.user.email}}</p></td>
+              {% endfor %}
+                   </table>
+                   </div>
+{% endblock %}
+{% block footer %}{% endblock %}

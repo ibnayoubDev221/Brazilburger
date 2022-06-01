@@ -1,0 +1,150 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CatalogueController!{% endblock %}
+
+{% block body %}
+
+
+
+<div class="full-png">
+<img style="" src="/background/full.png" class="bgde img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+
+ <div class="image-homme">
+ <img src="/background/png-transparent-hamburger-junk-food-chef-cooking-cuisine-delicious-burgers-kitchen-food-eating-thumbnail-removebg-preview.png">
+ </div>
+</div>
+
+
+{#  <div class=" mt-5 container"> 
+  <div class="container">  
+  <div class="text-center mb-4 text-warning"><p>BURGERS-SIMPLES</p></div><br/><br/>
+        <div class="row">
+{% for burgers in burger %}
+{% for image in burgers.images %}
+     <div class="ml-2 col-4 mb-4 row w-100"> 
+        <div class="card" style="width: 18rem">          
+<img style="height:250px;" src="{{ asset('/image/'~ image.nom)}}" class="card-img-top  w-100" alt="">
+<div class=" card-body mb-2" m>
+<div id="description">
+ <span class=""> {{burgers.nom}}</span><br/>
+ <span class=""> {{burgers.prix}} F</span><br/><br/>
+     <div class=" ml-4 mr-3 row">   
+      <a href="{{ path('app_add_panier', {'id': burgers.id}) }}"  class="btn btn-sm btn-danger float-left bg-danger"><i class="fa fa-shopping-cart">Ajouter</i></a>
+
+ {% if app.user %}
+ {% endif %}
+  <a onclick ="openModal()" href="{{ path('app_burger_detail', {'id': burgers.id}) }}" class=" btn btn-sm btn-outline-info float-left ml-3"><i class="fas fa-ellipsis-h"></i>details</a>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+ 
+ {% endfor %}
+{% endfor %} #}
+<section class="">
+<div class="place-burger">
+        <div class="p-burger"><p>LES BURGER-SIMPLES</p></div>
+   <div class="image-burger">
+   {% for burgers in burger   %}
+   {% for image in burgers.images %}
+   <div class="col3 row image-titres-burger">
+    <div class="image-burger-nom">
+        <img  style="height:250px;width:250px;" src="{{ asset('/image/'~ image.nom)}}">
+        </div>
+  <div class="lien-commande-burger-detail">
+   <div class="burger-nom-prix">
+        <p>{{ burgers.nom }} </p><br/>
+        <p>{{ burgers.prix }} FCFA</p>
+        </div>
+   <br/>
+   <div class="ajout-burger-detail">
+    <a class="add-burger" href="{{ path('app_add_panier', {'id': burgers.id ~ burgers.type}) }}"><i class="fas fa-cart-plus"></i>Ajouter</a>
+    <a class="detail-burger" href="{{ path('app_burger_detail', {'id': burgers.id}) }}">Détail</a>
+    </div>
+    </div>
+</div>
+   {% endfor %}
+   {% endfor %}
+        </div>
+</div>
+</section><br/>
+
+<div class="place-burger">
+        <div class="p-menu"><p>LES MENUS</p></div>
+   <div class="image-burger">
+   {% for menus in menu %}
+   {% for image in menus.images %}
+   <div class="col3 row image-titres-burger">
+    <div class="image-burger-nom">
+        <img  style="height:250px;width:250px;" src="{{ asset('/image/'~ image.nom)}}">
+        </div>
+  <div class="lien-commande-burger-detail">
+   <div class="burger-nom-prix">
+        <p>{{ menus.nom }} </p>
+        </div>
+   <br/>
+   <div class="ajout-burger-detail">
+    <a class="add-burger" href="{{ path('app_add_panier', {'id': menus.id ~ menus.type})  }} "><i class="fas fa-cart-plus"></i>Ajouter</a>
+    <a class="detail-burger" href="{{ path('app_menu_detail', {'id': menus.id}) }} "> Détail</a>
+    </div>
+    </div>
+</div>
+   {% endfor %}
+   {% endfor %}
+        </div>
+</div>
+</section>
+{# <section class="">
+<div class="place-burger">
+        <div class="p-burger"><p>MENUS</p></div>
+   <div class="image-burger">
+{% for menus in menu %}
+{% for image in menus.images %}
+<div class="col3 row image-titres-burger">
+    <div class="image-burger-nom">
+        <img  style="height:250px;width:250px;" src="{{ asset('/image/'~ image.nom)}}">
+        </div>
+  <div class="lien-commande-burger-detail">
+   <div class="burger-nom-prix">
+        <p>{{ menus.nom }}</p><br/>
+        </div>
+ <br/>
+   <div class="ajout-burger-detail">
+   <a href=" {{ path('app_add_panierMenu', {'id': menus.id})  }} "  class="add-burger"><i class="fa fa-shopping-cart">Ajouter</i></a>  
+   <a href="{{ path('app_menu_detail', {'id': menus.id}) }}" class="detail-burger"><i class="fas fa-ellipsis-h"></i>details</a> 
+     </div>
+    </div>
+</div>
+ {% endfor %}
+{% endfor %}
+       </div>
+</div>
+</section> #}
+
+
+{# <div class="text-center mb-4 menu text-warning"><p>MENUS</p></div> <br/><br/>
+<div class="container">
+        <div class="row">
+{% for menus in menu %}
+{% for image in menus.images %}
+<div class="col-4 mb-4">
+<div class="card" style="width: 18rem">
+<img style="height:250px;"  src="{{ asset('/image/'~ image.nom)}}" class="card-img-top w-100" alt="">
+<div class="menu-nom card-body">
+ <span class="">{{ menus.nom }}</span><br/><br/>
+ <div class=" menu-commande row">   
+ {% if app.user %}
+  <a href="{{ path('app_add_panierMenu', {'id': menus.id})  }}"  class="btn btn-sm btn-danger float-left bg-danger"><i class="fa fa-shopping-cart">Ajouter</i></a>
+  {% endif %}
+   <a href="{{ path('app_menu_detail', {'id': menus.id}) }}" class="btn btn-sm btn-outline-info float-left ml-4"><i class="fas fa-ellipsis-h"></i>details</a> 
+   </div>
+    </div>
+ </div>
+</div>
+ </div>
+ </div>
+ {% endfor %}
+{% endfor %}
+</div> #}
+{% endblock %}

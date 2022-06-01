@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CommandeController!{% endblock %}
+
+{% block body %}
+
+ <div class=" table-commande-titre">
+  <div class="liste-burger-titre">
+  <h1 class="mt-4  text-light border list-burger text-center">Liste Commandes</h1>
+     </div>
+     {% if app.user.id %}
+        <table class="table-burg  bg-light  border ">
+                <tr class="tr-burger" >
+                   <td scope="col">#</td>
+                   <td scope="col">Numéro</td>                 
+                   <td scope="col">Date</td>       
+                   <td scope="col">Etat</td>             
+                </tr>
+                {% for commande in commandes %}
+                 <tr>
+                 {% if app.user.id %}
+               <td class="td-burger" scope="col"><p>#</td>
+               <td class="td-burger" scope="col"><p> {{commande.id}}</p></td>
+               <td class="td-burger"scope="col"><p>{{commande.date}}</p></td>
+                <td class="td-burger"scope="col"><p>{{commande.etat}}</p></td>
+               </tr>
+               {% endif  %}
+               {% endfor %}
+                   </table>
+                   </div>
+      {% endif %}
+{% endblock %}
+{% block footer %}{% endblock %}

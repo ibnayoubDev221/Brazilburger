@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+ {% block menu %}
+
+        {% endblock %}
+{% block body %}
+
+{{ include('gestionnaire/addMenu.html.twig',{'button_label': 'Modifier'}) }}
+
+{% block javaScript %}
+
+<script src="{{ asset('js/images.js')}}"></script>
+
+{% endblock %}
+
+{% endblock %}
+
+ {% block footer %}{% endblock %}

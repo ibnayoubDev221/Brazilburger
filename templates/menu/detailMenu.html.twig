@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block title %}{% endblock %}
+
+
+{% block body %}
+
+<style>
+
+</style>
+<div class="full-png">
+<img src="/background/full.png" class="bgde img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+</div>
+
+<div class="derailMenu">
+ <div id="popup" class="popup">
+<span id="btnClose" class="float-right btnClose">&times;</span><br/>
+ <div class="container mt-2">
+        <div class="row">
+         <div id="menu-detail">
+    {% for menu in menus %}
+    {% for image in menu.images %}
+     <div class="col-4 mb-4"> 
+        <div class="" style="width: 18rem">          
+            <img  style="250px;width:250px;"src="{{ asset('/image/'~ image.nom)}}" class="card-img-top w-100" alt="">
+            <div class="card-body text-center ">
+          </div>
+     </div>
+       </div>
+    {% endfor %}
+      <div id="description" class="">
+      <span class="burger-nom "> {{ menu.nom }}</span><br/><br/>
+    <h1> <p>{{ menu.description }}<p></h1>
+        </div>
+    {% endfor %}
+    </div>
+ </div>
+     </div>
+     </div>
+{% endblock %}

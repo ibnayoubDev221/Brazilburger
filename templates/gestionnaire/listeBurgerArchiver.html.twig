@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BurgerController!{% endblock %}
+
+ {% block menu %}
+{#         <div class="barre">
+             <ul> 
+              <li class="side">
+              {% if not app.user %}
+                  <a class="li" href="/login"><i class="fa fa-user">Login</i></a>
+                  <a id="a1"class="li" href="/register">S'inscrire</a>
+                {% else %}
+                  <a class="text-light float-left" href="{{ path('app_burger') }}"> Burgers</a>
+                  <a class="ml-4 text-light float-left" href="{{ path('app_menu')}}">Menus</a>
+                  <a class="ml-4 text-light float-left" href="{{ path('app_complement') }}">Complements</a>
+                  <a class="ml-4 text-light float-left" href="#">Gérer les Commandes</a>
+                  <a class="ml-4 text-light ml-2"href="{{ path('app_logout')}}">Deconnexion</a>
+                  
+              {% endif %}
+             </li>
+          </ul>
+        </div> #}
+         <div class="nav-menu">
+            <div class="image-logo">
+              <img src="/background/burgerking.png" style="height:50px;" alt="">
+            </div>
+             <nav>
+                <ul>
+                  {% if not app.user %}
+                    <li><a href="/login"><i class="fa fa-car">Login</i></a></li>
+                    <li><a href="/register">S'inscrire</a></li>
+                  {% else %}  
+                    <li><a class="" href="{{ path('app_burger') }}">Burgers</a></li>
+                    <li><a class="" href="{{ path('app_menu')}}">Menus</a></li>
+                    <li> <a class="" href="{{ path('app_complement') }}">Complements</a></li>
+                    <li><a class="" href="{{ path('app_commande' ) }}">Gérer les Commandes</a></li>
+                    <li><a href="{{ path('app_logout') }}">Deconnexion</a></li>
+                  {% endif %}
+                </ul>
+             </nav>
+        </div>
+        {% endblock %}
+
+{% block body %}
+ <style>
+
+</style>
+
+ <div class=" table-burger-titre">
+  <div class="liste-burger-titre">
+   <div class="btn-add-burger"><a class="btn btn-danger button-burger " href="{{ path('add_burger') }}">Ajouter Burger++</a></div>
+  <h1 class="mt-4  text-light border list-burger text-center">Liste des Burger Archivés</h1>
+ 
+     </div>
+        <table class="table-burg  bg-light  border ">
+                <tr class="tr-burger" >
+                   <td scope="col">#</td>
+                   <td scope="col">Nom</td>
+                   <td scope="col">Prix</td>
+                   <td scope="col">Image</td>
+                   <td scope="col">Action </td>
+                </tr>
+{% for burgers in burger %}
+
+            <tr>
+               <td class="td-burger" scope="col"><p>#</td>
+               <td class="td-burger" scope="col"><p> {{burgers.nom}}</p></td>
+               <td class="td-burger"scope="col"><p>{{burgers.prix}} F</p></td>
+               <td class="td-burger"scope="col">
+            {% for image in burgers.images %}
+              <img style="height:80px;" src="{{ asset('/image/'~ image.nom)}}" >
+              {% endfor %}
+              </td>
+          <td class="td-burger"scope="col3"><a class="lien-a" href="{{ path('app_désarchiver',{'id':burgers.id}) }}"><i class="fas fa-edit"></i>Récupérer</a>
+          </td>
+            </tr>
+{% endfor %}
+ <tr>
+  <td colspan="5"></td>
+ </tr>
+   </table>
+     <div  class = "navigation d-flex justify-content-center knp_pagination text-light p-2" >
+        <div class="kn_paginator_render_burger"> {{ knp_pagination_render( burger ) }}</div>
+     </div>
+  </div>
+</div>
+   {% block footer %}{% endblock %}
+{% endblock %}

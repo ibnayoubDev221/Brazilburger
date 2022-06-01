@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+ {% block menu %}
+       <div class="nav-menu">
+            <div class="image-logo">
+              <img src="/background/burger.png" style="height:50px;" alt="">
+            </div>
+           <nav>
+               <ul>
+                  {% if not app.user %}
+                    <li><a href="/login"><i class="fa fa-car">Login</i></a></li>
+                    <li><a href="/register">S'inscrire</a></li>
+                  {% else %}  
+                    <li><a class="" href="{{ path('app_burger') }}">Burgers</a></li>
+                    <li><a class="" href="{{ path('app_menu')}}">Menus</a></li>
+                    <li> <a class="" href="{{ path('app_complement') }}">Complements</a></li>
+                    <li><a class="" href="{{ path('app_commande' ) }}">Gérer les Commandes</a></li>
+                    <li><a href="{{ path('app_logout') }}">Deconnexion</a></li>
+                  {% endif %}
+               </ul>
+            </nav>
+      </div>
+        {% endblock %}
+{% block body %}
+</style>
+<div class="container ajout-burger  card  mt-4 w-50">
+<div class="titre-burger"><h2>Ajout Menu</h2></div>
+  <div class="form-burger">
+       {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {% if app.request.attributes.get('_route')  == 'edit_menu' %}
+
+
+    {% for image in menus.images  %}
+    
+    <h2 class="mt-2">Image</h2>
+     <a class="float-center text-danger"href="{{ path('burger_delete_image', {'id':image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}" >&times;</a>
+     <div class="">
+      <img src="{{ asset('/image/'~ image.nom) }}" alt="Image" width="150px">
+     </div>  
+    
+      
+    {% endfor %}
+
+    {% endif %}
+    <button class="btn-burger btn-primary mt-4 mb-4">{{ button_label|default('Ajouter') }}</button>
+    {{ form_end(form) }}
+  </div>
+     </div>
+
+ {% endblock %}
+
+ {% block footer %}{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ComplementController!{% endblock %}
+
+ {% block menu %}
+             <div class="nav-menu">
+            <div class="image-logo">
+              <img src="/background/burger.png" style="height:50px;" alt="">
+            </div>
+             <nav>
+                <ul>
+                  {% if not app.user %}
+                    <li><a href="/login"><i class="fa fa-car">Login</i></a></li>
+                    <li><a href="/register">S'inscrire</a></li>
+                  {% else %}  
+                    <li><a class="" href="{{ path('app_burger') }}">Burgers</a></li>
+                    <li><a class="" href="{{ path('app_menu')}}">Menus</a></li>
+                    <li> <a class="" href="{{ path('app_complement') }}">Complements</a></li>
+                    <li><a class="" href="{{ path('app_commande') }}">Gérer les Commandes</a></li>
+                    <li><a href="{{ path('app_logout') }}">Deconnexion</a></li>
+                  {% endif %}
+                </ul>
+             </nav>
+        </div>
+        {% endblock %}
+
+{% block body %}
+ <style>
+
+</style>
+
+<div class=" table-burger-titre">
+  <div class="liste-burger-titre">
+  <div class="btn-add-burger"><a class="btn btn-danger  button-burger " href="{{ path('add_complement') }}">++Complement</a></div>
+  <h1 class="mt-4  text-light border list-burger text-center">Liste Complements</h1>
+     </div>
+        <table class="table-burg  bg-light  border ">
+                <tr class="tr-burger" >
+                  <td scope="col">#</td>
+                  <td scope="col">Nom</td>
+                  <td scope="col">Prix</td>
+                  <td scope="col">Image</td>
+                  <td scope="col">Action </td>
+                </tr>
+{% for complement in complements %}
+    
+    <tr class="">
+          <td class="td-burger" scope="col"><p>#</td>
+          <td class="td-burger" scope="col"><p> {{complement.nom}}</td>
+          <td class="td-burger" scope="col"><p>{{complement.prix}} F</td>
+          <td class="td-burger" scop="col">
+        {% for image in complement.images %}
+          <img style="height:80px;" src="{{ asset('/image/'~ image.nom)}}" >
+        {% endfor %}
+        </td>
+          <td class="td-burger" scope="col"><a href="{{ path('edit_complement',{'id':complement.id}) }}"><i class="fas  text-primary fa-edit"></i>edit</a>
+          <a class="ml-2" id="delete" href=""><i class=" fas text-danger fa-archive"></i  archiver</a>
+          </td>
+{% endfor %}
+ <tr>  <td colspan="5"></td></tr>
+ </tbody>
+   </table>
+           <div  class = "navigation d-flex justify-content-center knp_pagination text-light p-2" >
+
+    <div class="kn_paginator_render_burger"> {{ knp_pagination_render( complements ) }}</div>
+     </div>
+  </div>
+  </div>
+   {% block footer %}{% endblock %}
+{% endblock %}

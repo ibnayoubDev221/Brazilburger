@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+ {% block menu %}
+
+        {% endblock %}
+{% block body %}
+
+{{ include('gestionnaire/addComplement.html.twig',{'button_label': 'Modifier','class':'include'}) }}
+
+{% block javaScript %}
+
+<script src="{{ asset('js/images.js')}}"></script>
+
+{% endblock %}
+
+{% endblock %}
+ {% block footer %}{% endblock %}
